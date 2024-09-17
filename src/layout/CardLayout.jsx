@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom'
 function CardLayout({
   children,
   header,
-  subHeader,
   domain,
   ctaText,
   ctaLink,

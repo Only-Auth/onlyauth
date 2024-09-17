@@ -4,6 +4,7 @@ import RootLayout from './layout/RootLayout'
 import ChooseAccounts from './pages/ChooseAccounts'
 import Login from './pages/Login'
 import SignUp from './pages/SignUp'
+import Consent from './pages/Consent'
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
       {
         path: '/signup',
         element: <SignUp />,
+      },
+      {
+        path: '/consent',
+        element: <Consent />,
       },
     ],
   },

@@ -1,8 +1,12 @@
 import { CiUser } from 'react-icons/ci'
+import { Link } from 'react-router-dom'
 
 export const AccountListItem = ({ name, email, picture }) => {
   return (
-    <div className="flex px-4 py-3 gap-4 w-full max-w-sm hover:bg-gray-100 hover:rounded-lg cursor-pointer">
+    <Link
+      to={'/consent'}
+      className="flex px-4 py-3 gap-4 w-full max-w-sm hover:bg-gray-100 hover:rounded-lg cursor-pointer"
+    >
       <div className="p-3 rounded-full bg-gray-200">
         <CiUser size={24} />
       </div>
@@ -12,7 +16,6 @@ export const AccountListItem = ({ name, email, picture }) => {
           jhapariosh.542001@gmail.com
         </p>
       </div>
-    </div>
+    </Link>
   )
 }
-

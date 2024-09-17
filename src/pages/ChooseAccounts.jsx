@@ -1,18 +1,15 @@
 import AccountChangeListItem from '@/components/AccountChangeListItem'
 import { AccountListItem } from '@/components/AccountListItem'
-import CardLayout from '@/components/CardLayout'
+import CardLayout from '@/layout/CardLayout'
 import { Separator } from '@/components/ui/separator'
 
 function ChooseAccounts() {
   return (
-    <CardLayout>
-      <div className="flex flex-col items-center justify-center my-2">
-        <p className="text-2xl font-medium">Choose an Account</p>
-        <p className="text-sm">
-          to continue to{' '}
-          <span className="font-semibold text-blue-600">example.com</span>
-        </p>
-      </div>
+    <CardLayout
+      header={'Choose an Account'}
+      subHeader={'to continue to'}
+      domain={'example.com'}
+    >
       <div className="pt-10">
         <AccountListItem />
         <Separator />

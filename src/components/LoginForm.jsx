@@ -5,8 +5,9 @@ import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { useForm } from 'react-hook-form'
+import Loader from './Loader'
 
-function LoginForm() {
+function LoginForm({ loginHandler, loading }) {
   const [showPassword, setShowPassword] = useState(false)
 
   const {
@@ -19,11 +20,11 @@ function LoginForm() {
     'absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400 cursor-pointer'
 
   function submitHandler(data) {
-    console.log(data)
+    loginHandler(data)
   }
 
   return (
-    <div className="w-full max-w-sm pt-10 p-4 ">
+    <div className="w-full max-w-sm pt-8 p-4 ">
       <form className="space-y-6" onSubmit={handleSubmit(submitHandler)}>
         <div className="grid items-center gap-1.5">
           <Label htmlFor="email">Email</Label>
@@ -73,7 +74,9 @@ function LoginForm() {
           </div>
           <p className="text-xs text-red-500">{errors.password?.message}</p>
         </div>
-        <Button className="w-full h-12 rounded-lg">Sign In</Button>
+        <Button className="w-full h-12 rounded-lg" disabled={loading}>
+          {loading ? <Loader /> : 'Sign In'}
+        </Button>
       </form>
     </div>
   )

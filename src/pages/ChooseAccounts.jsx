@@ -1,13 +1,15 @@
 import { useEffect } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { Navigate, useNavigate, useSearchParams } from 'react-router-dom'
 
 import AccountChangeListItem from '@/components/AccountChangeListItem'
 import CardLayout from '@/layout/CardLayout'
 import { AccountListItem } from '@/components/AccountListItem'
 import { Separator } from '@/components/ui/separator'
+import { getLocalStorage, setSessionStorage } from '@/utils/storage'
 
 function ChooseAccounts() {
   const [searchParams, setSearchParams] = useSearchParams()
+  const navigate = useNavigate()
 
   useEffect(() => {
     // http://localhost:5173/?client_id=1234&redirect_uri=https%3A%2F%2Fhitenvats.com&scopes=profile
@@ -27,10 +29,15 @@ function ChooseAccounts() {
       console.log('INVALID URL')
       return
     }
+    setSessionStorage('authQueryParams', JSON.stringify(authQueryParams))
 
-    //storing data into session storage
-    sessionStorage.setItem('authQueryParams', JSON.stringify(authQueryParams))
-    // console.log(JSON.parse(sessionStorage.getItem('authQueryParams')))
+    //retrive the stored access token
+    const token = getLocalStorage('token')
+
+    if (!token) {
+      console.log('No token is found')
+      navigate('/login')
+    }
   }, [])
 
   return (

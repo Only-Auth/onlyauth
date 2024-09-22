@@ -1,7 +1,12 @@
+import { useState } from 'react'
+
 import CardLayout from '@/layout/CardLayout'
 import LoginForm from '@/components/LoginForm'
+import { useAuth } from '@/hooks/useAuth'
 
 function Login() {
+  const { handleSignIn, loading, error } = useAuth()
+
   return (
     <CardLayout
       header={'Sign in'}
@@ -11,7 +16,8 @@ function Login() {
       ctaText={'Create Account'}
       ctaLink={'/signup'}
     >
-      <LoginForm />
+      <p className="text-sm text-red-500">{error}</p>
+      <LoginForm loginHandler={handleSignIn} loading={loading} />
     </CardLayout>
   )
 }

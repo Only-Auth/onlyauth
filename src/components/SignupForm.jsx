@@ -5,8 +5,9 @@ import { useForm } from 'react-hook-form'
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
+import Loader from './Loader'
 
-function SignupForm() {
+function SignupForm({ signupHandler, loading }) {
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
@@ -21,7 +22,7 @@ function SignupForm() {
     'absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400 cursor-pointer'
 
   function submitHandler(data) {
-    console.log(data)
+    signupHandler(data)
   }
   return (
     <div className="w-full max-w-sm pt-10 p-4 ">
@@ -120,7 +121,7 @@ function SignupForm() {
           </p>
         </div>
         <Button type={'submit'} className="w-full h-12 rounded-lg">
-          Sign Up
+          {loading ? <Loader /> : 'Sign Up'}
         </Button>
       </form>
     </div>

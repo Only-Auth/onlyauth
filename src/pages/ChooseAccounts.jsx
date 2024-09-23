@@ -8,8 +8,10 @@ import { Separator } from '@/components/ui/separator'
 import { getLocalStorage, setSessionStorage } from '@/utils/storage'
 
 function ChooseAccounts() {
-  const [searchParams, setSearchParams] = useSearchParams()
+  const [searchParams] = useSearchParams()
   const navigate = useNavigate()
+
+  const user = JSON.parse(getLocalStorage('user'))
 
   useEffect(() => {
     // http://localhost:5173/?client_id=1234&redirect_uri=https%3A%2F%2Fhitenvats.com&scopes=profile
@@ -47,7 +49,17 @@ function ChooseAccounts() {
       domain={'example.com'}
     >
       <div className="pt-10">
-        <AccountListItem />
+        {user ? (
+          <AccountListItem
+            email={user.email}
+            name={user.fullName}
+            picture={user.picture}
+          />
+        ) : (
+          <div className="flex px-4 py-3 gap-4 w-full max-w-sm justify-center items-center">
+            <p className="font-medium">No account found!</p>
+          </div>
+        )}
         <Separator />
         <AccountChangeListItem />
         <Separator />

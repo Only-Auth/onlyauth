@@ -21,4 +21,23 @@ export async function signIn(credentials) {
   }
 }
 
-export function signUp(data) {}
+export async function signUp(data) {
+  const { email, password, name } = data
+
+  try {
+    const response = await axios.post(`${API_URL}/user/signup`, {
+      fullName: name,
+      email: email,
+      password: password,
+    })
+
+    if (response.status !== 201 || !response.data) {
+      throw new Error(response.data?.error || 'Signup failed')
+    }
+
+    return response.data
+  } catch (e) {
+    console.log(e)
+    throw new Error(error.response?.data?.error || 'Signup failed')
+  }
+}

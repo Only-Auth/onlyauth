@@ -5,11 +5,16 @@ import ChooseAccounts from './pages/ChooseAccounts'
 import Login from './pages/Login'
 import SignUp from './pages/SignUp'
 import Consent from './pages/Consent'
+import ProtectedRoutes from './utils/ProtectedRoutes'
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <RootLayout />,
+    element: (
+      <ProtectedRoutes>
+        <RootLayout />
+      </ProtectedRoutes>
+    ),
     children: [
       {
         index: true,

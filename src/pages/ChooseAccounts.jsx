@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
-import { Navigate, useNavigate, useSearchParams } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
+import Cookies from 'js-cookie'
 
 import AccountChangeListItem from '@/components/AccountChangeListItem'
 import CardLayout from '@/layout/CardLayout'
@@ -14,7 +15,7 @@ function ChooseAccounts() {
   const user = JSON.parse(getLocalStorage('user'))
 
   useEffect(() => {
-    // http://localhost:5173/?client_id=1234&redirect_uri=https%3A%2F%2Fhitenvats.com&scopes=profile
+    // http://localhost:5173/?client_id=cid_e8e3797a18ab5c89a593ae46&redirect_uri=https%3A%2F%2Fhitenvats.com&scopes=profile
 
     const authQueryParams = {
       client_id: searchParams.get('client_id') || '',
@@ -34,7 +35,7 @@ function ChooseAccounts() {
     setSessionStorage('authQueryParams', JSON.stringify(authQueryParams))
 
     //retrive the stored access token
-    const token = getLocalStorage('token')
+    const token = Cookies.get('token')
 
     if (!token) {
       console.log('No token is found')

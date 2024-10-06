@@ -1,6 +1,8 @@
 import { useState } from 'react'
-import { signIn, signUp } from '@/services/authServices'
 import { useNavigate } from 'react-router-dom'
+import Cookies from 'js-cookie'
+
+import { signIn, signUp } from '@/services/authServices'
 import { setLocalStorage, getSessionStorage } from '@/utils/storage'
 
 export function useAuth() {
@@ -10,6 +12,7 @@ export function useAuth() {
 
   function redirectToChooseAccountsPage() {
     const authQueryParams = JSON.parse(getSessionStorage('authQueryParams'))
+    
     navigate(
       '/?client_id=' +
         authQueryParams.client_id +
@@ -25,7 +28,7 @@ export function useAuth() {
     try {
       const response = await signIn(credentials)
 
-      setLocalStorage('token', response.accessToken)
+      Cookies.set('token', response.accessToken)
       setLocalStorage('user', JSON.stringify(response.user))
 
       setError(null)
@@ -43,7 +46,7 @@ export function useAuth() {
     try {
       const response = await signUp(data)
 
-      setLocalStorage('token', response.accessToken)
+      Cookies.set('token', response.accessToken)
       setLocalStorage('user', JSON.stringify(response.user))
 
       setError(null)

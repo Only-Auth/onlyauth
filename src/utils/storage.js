@@ -13,3 +13,5 @@ export function setLocalStorage(key, value) {
 export function getLocalStorage(key) {
   return localStorage.getItem(key)
 }
+
+

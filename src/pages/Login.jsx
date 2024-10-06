@@ -1,5 +1,3 @@
-import { useState } from 'react'
-
 import CardLayout from '@/layout/CardLayout'
 import LoginForm from '@/components/LoginForm'
 import { useAuth } from '@/hooks/useAuth'
@@ -10,7 +8,6 @@ function Login() {
   return (
     <CardLayout
       header={'Sign in'}
-      subHeader={'to continue to'}
       domain={'example.com'}
       ctaDescription={'Don’t have an account?'}
       ctaText={'Create Account'}

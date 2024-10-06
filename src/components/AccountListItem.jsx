@@ -1,13 +1,10 @@
-import { CiUser } from 'react-icons/ci'
 import { Link } from 'react-router-dom'
+
 import CustomAvatar from './CustomAvatar'
 
 export const AccountListItem = ({ name, email, picture }) => {
   return (
-    <Link
-      to={'/consent'}
-      className="flex px-4 py-3 gap-4 w-full max-w-sm hover:bg-gray-100 hover:rounded-lg cursor-pointer"
-    >
+    <Link to={'/consent'} className="flex px-4 py-3 gap-4 w-full max-w-sm hover:bg-gray-100 hover:rounded-lg cursor-pointer">
       {picture ? (
         <img src={picture} alt="user" className="w-12 h-12 rounded-full" />
       ) : (

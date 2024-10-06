@@ -1,10 +1,10 @@
-import { Eye, EyeOff, FunctionSquareIcon } from 'lucide-react'
+import { Eye, EyeOff} from 'lucide-react'
 import { useState } from 'react'
+import { useForm } from 'react-hook-form'
 
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import { useForm } from 'react-hook-form'
 import Loader from './Loader'
 
 function LoginForm({ loginHandler, loading }) {
@@ -31,7 +31,6 @@ function LoginForm({ loginHandler, loading }) {
           <Input
             type="email"
             id="email"
-            name="email"
             placeholder="Email"
             className="h-12"
             {...register('email', {
@@ -51,7 +50,6 @@ function LoginForm({ loginHandler, loading }) {
               type={showPassword ? 'text' : 'password'}
               placeholder="Password"
               className="h-12"
-              name="password"
               {...register('password', {
                 required: 'Please enter password',
                 minLength: {

@@ -1,4 +1,6 @@
+import { getSessionStorage } from '@/utils/storage'
 import axios from 'axios'
+import Cookies from 'js-cookie'
 
 const API_URL = import.meta.env.BASE_API_URL || 'http://localhost:8000'
 
@@ -38,6 +40,32 @@ export async function signUp(data) {
     return response.data
   } catch (e) {
     console.log(e)
-    throw new Error(error.response?.data?.error || 'Signup failed')
+    throw new Error(e.response?.data?.error || 'Signup failed')
+  }
+}
+
+export async function handleGrantTokenRequest() {
+  const { client_id, redirect_uri, scopes } = JSON.parse(
+    getSessionStorage('authQueryParams')
+  )
+  const accessToken = Cookies.get('token')
+
+  try {
+    await axios.post(
+      `${API_URL}/o/grant`,
+      {
+        clientId: client_id,
+        redirectUri: 'https://jobcadet.com/',
+        scopes: scopes,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    )
+  } catch (error) {
+    console.log(error)
+    throw new Error(error.response?.data?.error || 'Grant failed')
   }
 }

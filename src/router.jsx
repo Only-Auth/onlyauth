@@ -21,16 +21,16 @@ const router = createBrowserRouter([
         element: <ChooseAccounts />,
       },
       {
+        path: '/consent',
+        element: <Consent />,
+      },
+      {
         path: '/login',
         element: <Login />,
       },
       {
         path: '/signup',
         element: <SignUp />,
-      },
-      {
-        path: '/consent',
-        element: <Consent />,
       },
     ],
   },
